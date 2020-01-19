@@ -42,10 +42,17 @@ server.delete('/projects/:id', (req, res) => {
     return res.status(200).send();
 });
 
+// adiciona tarefa em um projeto
 server.post('/projects/:id/tasks', (req, res) => {
     // rota recebe um campo title,
     // armazena no array de tarefas de um projeto
     // correspondente ao id recebido
+    const { id } = req.params;
+    const { title } = req.body;
+    
+    projects[id].tasks.push(title);
+
+    return res.status(200).send();
 });
 
 server.listen(3000);
