@@ -4,6 +4,7 @@ const { project } = require('./utils/project');
 const server = express();
 server.use(express.json());
 
+// array no qual os projetos serão armazenados em tempo de execução
 let projects = [];
 
 // cadastra projetos
@@ -15,8 +16,9 @@ server.post('/projects', (req, res) => {
     return res.status(200).send();
 });
 
+// lista todos os projetos e tarefas
 server.get('/projects', (req, res) => {
-    // lista todos os projetos e tarefas
+    return res.json(projects);
 });
 
 server.put('/projects/:id', (req, res) => {
