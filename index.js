@@ -5,7 +5,7 @@ const server = express();
 server.use(express.json());
 
 // array no qual os projetos serão armazenados em tempo de execução
-let projects = [];
+let projects = [ project(0, 'projetoZer0') ];
 
 // cadastra projetos
 server.post('/projects', (req, res) => {
@@ -21,10 +21,19 @@ server.get('/projects', (req, res) => {
     return res.json(projects);
 });
 
+// altera o titulo
 server.put('/projects/:id', (req, res) => {
     // rota deve altearar o titulo de um projeto com o id correspondente
+    const { id } = req.params;
+    const { title } = req.body;
+
+    projects[id].title = title;
+
+    return res.status(200).send();
 });
 
+
+// deleta um projeto
 server.delete('/projects/:id', (req, res) => {
     // rota deleta um projeto com o id correspondente
 });
