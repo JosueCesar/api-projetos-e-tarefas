@@ -32,10 +32,14 @@ server.put('/projects/:id', (req, res) => {
     return res.status(200).send();
 });
 
-
 // deleta um projeto
 server.delete('/projects/:id', (req, res) => {
     // rota deleta um projeto com o id correspondente
+    const { id } = req.params;
+
+    projects.splice(id, 1);
+
+    return res.status(200).send();
 });
 
 server.post('/projects/:id/tasks', (req, res) => {
